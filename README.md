@@ -18,7 +18,7 @@ head(listadoNumeros)
 
 todo<- data.frame(listadoTopologias,listadoNumeros)
 
-### R puede manejar cosas comprimidas con gz. uselo mas y asi ahoramos espacio
+### R puede manejar cosas comprimidas con gz. asi ahoramos espacio
 ### por ejemplo pasamos de 1.1 m a 29.2 k
 
 distanciaRFasim <- read.csv("/media/aleu/AleDocs/CONGRESO/parsimonia/intentoasimetrico.gz", sep = ",",header = T)
@@ -35,7 +35,7 @@ rfasim[1,1]
 diag(rfasim) <-  NA
 rfasim[1,1]
 
-### Histograma de yo vs todos, con la diagonal de 0 
+### Histograma de yo(pesos Iguales) vs todos (piwi), con la diagonal de 0 
 
 yovsTodo <- rfasim[which(lower.tri(rfasim, diag = TRUE))]
 
@@ -50,15 +50,13 @@ length(newTodos)
 if (!is.null(dev.list())){
   dev.off()}
 
-### Parametros a la grafica 
+### Parametros de la grafica 
 par(mfrow = c(1,2))
 hist(yovsTodo)
 
 hist(newTodos)
 
-### peor tenemos valores del a diagonal, es decir dejo los valores de 0 
-
-### FuturoNA: arriba de la diagonal pondremos NA,pero la diagonal es de 0.  
+### FuturoNA: arriba de la diagonal pondremos NA, pero la diagonal es de 0.  
 
 FuturoNA <- which(x = upper.tri(rfasim, diag = F))
 
